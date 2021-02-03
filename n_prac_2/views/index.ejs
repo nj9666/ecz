@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST" action="/adddata">
+      <table>
+        <tr>
+          <td>Fname</td>
+          <td>
+            <input type="text" name="fname" id="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Lname</td>
+          <td>
+            <input type="text" name="lname" id="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Fname</td>
+          <td>
+            <input type="email" name="email" id="" />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" name="submit" value="submit" />
+          </td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>first name</th>
+          <th>Last name</th>
+          <th>email</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% for(var i=0; i< data.length; i++){ %>
+        <tr>
+          <td><%= data[i]._id %></td>
+          <td><%= data[i].fname %></td>
+          <td><%= data[i].lname %></td>
+          <td><%= data[i].email %></td>
+          <td>
+            <a href="/editdata?id=<%= data[i]._id %>">Edit</a>
+          </td>
+          <td>
+            <a href="/deletedata?id=<%= data[i]._id %>">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+    </form>
+  </body>
+</html>

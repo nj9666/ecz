@@ -1,0 +1,80 @@
+1)You can visit the link Install multer module. You can install this package by using this command.
+npm install multer
+
+After installing multer you can check your multer version in command prompt using the command.
+npm version multer
+
+After that, you can just create a folder and add a file for example index.js, To run this file you need to run the following command.
+node index.js
+
+Requiring module: You need to include multer module in your file by using these lines.
+var multer = require('multer');
+
+Signup.ejs
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <title>FILE UPLOAD DEMO</title> 
+</head> 
+  
+<body> 
+    <h1>Single File Upload Demo</h1> 
+   
+    <form action="/uploadProfilePicture" 
+      enctype="multipart/form-data" method="POST"> 
+      
+        <span>Upload Profile Picture:</span>   
+        <input type="file" name="mypic" required/> <br> 
+        <input type="submit" value="submit">  
+    </form> 
+</body> 
+  
+</html> 
+
+
+
+var storage = multer.diskStorage({ 
+    destination: function (req, file, cb) {   
+        cb(null, "uploads") 
+    }, 
+    filename: function (req, file, cb) { 
+      cb(null, file.fieldname + "-" + Date.now()+".jpg") 
+    } 
+  }) 
+       
+const maxSize = 1 * 1000 * 1000; 
+    
+var upload = multer({  
+    storage: storage, 
+    limits: { fileSize: maxSize }, 
+    fileFilter: function (req, file, cb){ 
+    
+        // Set the filetypes, it is optional 
+        var filetypes = /jpeg|jpg|png/; 
+        var mimetype = filetypes.test(file.mimetype); 
+  
+        var extname = filetypes.test(path.extname( 
+                    file.originalname).toLowerCase()); 
+        
+        if (mimetype && extname) { 
+            return cb(null, true); 
+        } 
+      
+        cb("Error: File upload only supports the "
+                + "following filetypes - " + filetypes); 
+      }  
+  
+// mypic is the name of file attribute 
+}).single("mypic"); 
+
+app.post("/uploadProfilePicture",function (req, res, next) {         
+    upload(req,res,function(err) {   
+        if(err) { 
+            res.send(err) 
+        } 
+        else { 
+            res.send("Success, Image uploaded!") 
+        } 
+    }) 
+})   

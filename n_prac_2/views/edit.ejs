@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST" action="/updatedata?id=<%= data._id %>">
+      <table>
+        <tr>
+          <td>Fname</td>
+          <td>
+            <input type="text" name="fname" id="" value="<%= data.fname %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>Lname</td>
+          <td>
+            <input type="text" name="lname" id="" />
+          </td>
+        </tr>
+        <tr>
+          <td>Fname</td>
+          <td>
+            <input type="email" name="email" id="" />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" name="submit" value="submit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
