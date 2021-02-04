@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+</head>
+<body>
+    <form method="POST" action="/add" enctype="multipart/form-data">
+        <label>Name</label>
+        <input type="text" name="name"></br>
+        <label>City</label>
+        <input type="text" name="city"></br>
+        <label>Image</label>
+        <input type="file" name="image"></br>
+        <button type="submit">Add</button>
+    </form>
+    
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>City</td>
+            <td>Image</td>
+        </tr>
+        <% employee.forEach((em)=>{%>
+            <tr>
+                <td><%-em.name%></td>
+                <td><%-em.city%></td>
+                <td><img src="<%-em.image%>" height="100px" width="100px"></td>
+                <td><a href="/del/<%= em._id %>">Delete</a></td>
+                <td><a href="/finbyid/<%= em._id %>">Edit</a></td>
+            </tr>
+        <%}) %>
+    </table>
+   
+</body>
+</html>

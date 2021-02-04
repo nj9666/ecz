@@ -1,0 +1,8 @@
+<form action="/edit/<%= emp1._id %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<%= emp1._id  %> ">
+
+    <input type="text" name="name" placeholder="Name" value="<%= emp1.name %> ">
+    <input type="text" name="city" placeholder="City" value="<%= emp1.city  %> ">
+    <input type="file" name="image" value="<%= emp1.image  %> "/>
+    <input type="submit" value="Update"/>
+</form>
